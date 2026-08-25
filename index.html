@@ -21,13 +21,12 @@
     .warn { max-width:1100px; margin:14px auto 0; padding:12px 14px; background:var(--warn); border:1px solid var(--warn-border); color:var(--warn-text); border-radius:10px; width:calc(100% - 32px); font-size:14px; line-height:1.45; overflow-wrap:anywhere; }
     .warn strong { display:block; margin-bottom:2px; }
     .err { color:#b42318; font-weight:600; min-height:22px; max-width:1100px; margin:8px auto 0; padding:0 16px; overflow-wrap:anywhere; }
-    .grid { max-width:1100px; margin:18px auto 40px; padding:0 16px; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; flex:1; width:100%; }
-    figure { margin:0; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); min-width:0; }
-    figure img { width:100%; height:120px; object-fit:cover; display:block; cursor:pointer; }
-    figcaption { padding:8px; font-size:11px; color:#556; display:flex; justify-content:space-between; gap:6px; min-width:0; }
-    figcaption span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-    .tag-bib { color:var(--navy); font-weight:700; }
-    .tag-yuz { color:var(--orange); font-weight:700; }
+    .grid { max-width:1100px; margin:18px auto 40px; padding:0 16px; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; width:100%; align-items:start; align-content:start; }
+    figure { margin:0; position:relative; border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); min-width:0; background:transparent; height:auto; }
+    figure img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; display:block; cursor:pointer; }
+    .tag-bib, .tag-yuz { position:absolute; top:8px; left:8px; z-index:1; padding:3px 7px; border-radius:6px; font-size:11px; font-weight:700; letter-spacing:.3px; background:rgba(255,255,255,.92); box-shadow:0 1px 4px rgba(0,0,0,.12); pointer-events:none; }
+    .tag-bib { color:var(--navy); }
+    .tag-yuz { color:var(--orange); }
     .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.9); z-index:9; align-items:center; justify-content:center; padding:64px 8px 56px; touch-action:pan-y; }
     .lightbox.open { display:flex; }
     .lightbox img { width:100%; max-width:100%; max-height:min(78vh, 100%); height:auto; object-fit:contain; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,.4); }
@@ -49,14 +48,11 @@
       input[type=text] { font-size:18px; flex:0 1 220px; width:auto; }
       button { width:auto; }
       .grid { grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px; }
-      figure img { height:160px; }
-      figcaption { font-size:12px; padding:8px 10px 10px; }
       .lightbox { padding:56px 72px 48px; }
       .lightbox img { max-width:min(96vw, 1200px); }
     }
     @media (min-width:900px) {
       .grid { grid-template-columns:repeat(4, minmax(0, 1fr)); }
-      figure img { height:180px; }
     }
   </style>
 </head>
@@ -130,7 +126,7 @@
       currentIndex = ((currentIndex % n) + n) % n;
       const it = currentItems[currentIndex];
       lbimg.src = photoUrl(it);
-      lbimg.alt = it.file || '';
+      lbimg.alt = (it.kaynak==='bib'?'BIB':'YÜZ');
       lbcnt.textContent = (currentIndex + 1) + ' / ' + n;
       lb.classList.add('open');
       lb.setAttribute('aria-hidden', 'false');
@@ -168,7 +164,8 @@
       items.forEach((it, idx) => {
         const fig = document.createElement('figure');
         const src = photoUrl(it);
-        fig.innerHTML = '<img src="'+src+'" alt="'+bib+' '+it.file+'"><figcaption><span class="'+(it.kaynak==='bib'?'tag-bib':'tag-yuz')+'">'+(it.kaynak==='bib'?'BIB':'YÜZ')+'</span><span>'+it.file+'</span></figcaption>';
+        const tag = it.kaynak==='bib' ? 'BIB' : 'YÜZ';
+        fig.innerHTML = '<img src="'+src+'" alt="'+bib+' '+tag+'"><span class="'+(it.kaynak==='bib'?'tag-bib':'tag-yuz')+'">'+tag+'</span>';
         fig.querySelector('img').onclick = () => openLb(idx);
         grid.appendChild(fig);
       });
