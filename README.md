@@ -6,8 +6,8 @@ Canlı sayfa: fotoğraflar resmi siteden yüklenir (`https://www.eskisehiryarima
 
 ## Kullanım
 
-1. Göğüs numaranızı yazın (örnek: **1966**).
-2. Fotoğraflar listelenir. Bir fotoğrafa tıklayınca büyük görüntüleyici açılır; ok tuşları veya ekrandaki oklarla önceki/sonraki fotoğrafa geçebilirsiniz.
+1. Göğüs numaranızı yazın (örnek: **1432**).
+2. Fotoğraflar listelenir. Bir fotoğrafa tıklayınca büyük görüntüleyici açılır; ok tuşları, ekrandaki oklar veya kaydırma (swipe) ile önceki/sonraki fotoğrafa geçebilirsiniz. The site is mobile-friendly.
 3. Bilinmeyen bir numara için hata mesajı gösterilir.
 
 ## Uyarı

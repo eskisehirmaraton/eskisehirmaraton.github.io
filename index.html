@@ -7,40 +7,56 @@
   <style>
     :root { --navy:#1b3874; --orange:#ff6b35; --bg:#f4f7fb; --warn:#fff4e5; --warn-border:#f0b429; --warn-text:#7a4a00; }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Inter, Segoe UI, sans-serif; background:var(--bg); color:#1a1a1a; min-height:100vh; display:flex; flex-direction:column; }
-    header { background:linear-gradient(135deg,var(--navy),#2a5298); color:#fff; padding:28px 20px 22px; }
-    header h1 { margin:0 0 8px; font-size:clamp(20px, 3.4vw, 28px); line-height:1.25; }
-    header p { margin:0; opacity:.88; max-width:820px; }
-    .bar { max-width:1100px; margin:18px auto 0; padding:0 16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    input[type=text] { min-width:180px; padding:10px 12px; border-radius:10px; border:1px solid #d5dbe6; font-size:18px; letter-spacing:1px; }
-    button { background:var(--orange); color:#fff; border:0; border-radius:10px; padding:10px 16px; font-weight:700; cursor:pointer; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin:0; font-family: Inter, Segoe UI, sans-serif; background:var(--bg); color:#1a1a1a; min-height:100vh; display:flex; flex-direction:column; overflow-x:hidden; }
+    header { background:linear-gradient(135deg,var(--navy),#2a5298); color:#fff; padding:22px 16px 18px; }
+    header h1 { margin:0 0 8px; font-size:clamp(1.15rem, 5.4vw, 1.75rem); line-height:1.25; overflow-wrap:anywhere; }
+    header p { margin:0; opacity:.88; max-width:820px; font-size:clamp(0.9rem, 3.6vw, 1rem); line-height:1.45; }
+    .bar { max-width:1100px; margin:18px auto 0; padding:0 16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; width:100%; }
+    label { font-weight:600; }
+    input[type=text] { flex:1 1 140px; min-width:0; width:100%; max-width:100%; padding:12px; border-radius:10px; border:1px solid #d5dbe6; font-size:16px; letter-spacing:1px; min-height:48px; }
+    button { background:var(--orange); color:#fff; border:0; border-radius:10px; padding:12px 16px; font-weight:700; cursor:pointer; min-height:48px; font-size:16px; }
     button:hover { filter:brightness(1.05); }
-    .meta { color:#445; font-size:14px; }
-    .warn { max-width:1100px; margin:14px auto 0; padding:12px 14px; background:var(--warn); border:1px solid var(--warn-border); color:var(--warn-text); border-radius:10px; width:calc(100% - 32px); font-size:14px; line-height:1.45; }
+    .meta { color:#445; font-size:14px; flex:1 1 100%; }
+    .warn { max-width:1100px; margin:14px auto 0; padding:12px 14px; background:var(--warn); border:1px solid var(--warn-border); color:var(--warn-text); border-radius:10px; width:calc(100% - 32px); font-size:14px; line-height:1.45; overflow-wrap:anywhere; }
     .warn strong { display:block; margin-bottom:2px; }
-    .err { color:#b42318; font-weight:600; min-height:22px; max-width:1100px; margin:8px auto 0; padding:0 16px; }
-    .grid { max-width:1100px; margin:18px auto 40px; padding:0 16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; flex:1; width:100%; }
-    figure { margin:0; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); }
-    figure img { width:100%; height:180px; object-fit:cover; display:block; cursor:pointer; }
-    figcaption { padding:8px 10px 10px; font-size:12px; color:#556; display:flex; justify-content:space-between; }
+    .err { color:#b42318; font-weight:600; min-height:22px; max-width:1100px; margin:8px auto 0; padding:0 16px; overflow-wrap:anywhere; }
+    .grid { max-width:1100px; margin:18px auto 40px; padding:0 16px; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; flex:1; width:100%; }
+    figure { margin:0; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); min-width:0; }
+    figure img { width:100%; height:120px; object-fit:cover; display:block; cursor:pointer; }
+    figcaption { padding:8px; font-size:11px; color:#556; display:flex; justify-content:space-between; gap:6px; min-width:0; }
+    figcaption span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .tag-bib { color:var(--navy); font-weight:700; }
     .tag-yuz { color:var(--orange); font-weight:700; }
-    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.9); z-index:9; align-items:center; justify-content:center; padding:56px 72px 48px; }
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.9); z-index:9; align-items:center; justify-content:center; padding:64px 8px 56px; touch-action:pan-y; }
     .lightbox.open { display:flex; }
-    .lightbox img { max-width:min(96vw, 1200px); max-height:82vh; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,.4); }
-    .lb-btn { position:absolute; background:rgba(255,255,255,.12); color:#fff; border:0; border-radius:999px; width:46px; height:46px; font-size:28px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-    .lb-btn:hover { background:rgba(255,255,255,.22); }
-    .lb-close { top:14px; right:16px; font-size:32px; }
-    .lb-prev { left:16px; top:50%; transform:translateY(-50%); }
-    .lb-next { right:16px; top:50%; transform:translateY(-50%); }
-    .lb-counter { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); color:#fff; font-size:14px; opacity:.85; letter-spacing:.4px; }
-    footer { margin-top:auto; padding:18px 16px 22px; text-align:center; color:#667; font-size:13px; }
+    .lightbox img { width:100%; max-width:100%; max-height:min(78vh, 100%); height:auto; object-fit:contain; border-radius:6px; box-shadow:0 8px 40px rgba(0,0,0,.4); }
+    .lb-btn { position:absolute; background:rgba(255,255,255,.18); color:#fff; border:0; border-radius:999px; width:52px; height:52px; font-size:32px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent; }
+    .lb-btn:hover { background:rgba(255,255,255,.28); }
+    .lb-close { top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right)); font-size:36px; }
+    .lb-prev { left:max(6px, env(safe-area-inset-left)); top:50%; transform:translateY(-50%); }
+    .lb-next { right:max(6px, env(safe-area-inset-right)); top:50%; transform:translateY(-50%); }
+    .lb-counter { position:absolute; bottom:max(12px, env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); color:#fff; font-size:14px; opacity:.85; letter-spacing:.4px; white-space:nowrap; }
+    footer { margin-top:auto; padding:18px 16px calc(22px + env(safe-area-inset-bottom, 0px)); text-align:center; color:#667; font-size:13px; overflow-wrap:anywhere; }
     footer a { color:var(--navy); font-weight:700; text-decoration:none; }
     footer a:hover { text-decoration:underline; }
-    @media (max-width:640px) {
-      .lightbox { padding:64px 12px 40px; }
-      .lb-prev, .lb-next { width:40px; height:40px; font-size:24px; }
-      .lb-prev { left:8px; } .lb-next { right:8px; }
+    @media (max-width:480px) {
+      .bar { flex-direction:column; align-items:stretch; }
+      input[type=text], button { width:100%; }
+    }
+    @media (min-width:640px) {
+      header { padding:28px 20px 22px; }
+      input[type=text] { font-size:18px; flex:0 1 220px; width:auto; }
+      button { width:auto; }
+      .grid { grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px; }
+      figure img { height:160px; }
+      figcaption { font-size:12px; padding:8px 10px 10px; }
+      .lightbox { padding:56px 72px 48px; }
+      .lightbox img { max-width:min(96vw, 1200px); }
+    }
+    @media (min-width:900px) {
+      .grid { grid-template-columns:repeat(4, minmax(0, 1fr)); }
+      figure img { height:180px; }
     }
   </style>
 </head>
@@ -51,7 +67,7 @@
   </header>
   <div class="bar">
     <label for="bib">Göğüs no</label>
-    <input id="bib" type="text" inputmode="numeric" autocomplete="off" placeholder="ör. 1966">
+    <input id="bib" type="text" inputmode="numeric" autocomplete="off" placeholder="ör. 1432">
     <button id="go" type="button">Fotoğrafları göster</button>
     <span class="meta" id="meta"></span>
   </div>
@@ -170,6 +186,21 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
       if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
     });
+    let swipeX = 0, swipeY = 0;
+    lb.addEventListener('touchstart', (e) => {
+      const t = e.changedTouches[0];
+      if (!t) return;
+      swipeX = t.clientX;
+      swipeY = t.clientY;
+    }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      if (!lb.classList.contains('open')) return;
+      const t = e.changedTouches[0];
+      if (!t) return;
+      const dx = t.clientX - swipeX;
+      const dy = t.clientY - swipeY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
     const q = new URLSearchParams(location.search).get('bib');
     if (q) { input.value = normalize(q); render(q); }
   </script>
