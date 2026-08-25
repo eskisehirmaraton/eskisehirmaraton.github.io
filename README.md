@@ -14,7 +14,7 @@ Fotoğraflar resmi siteden yüklenir (`https://www.eskisehiryarimaratonu.com/mar
 
 ## Uyarı
 
-Sistem göğüs numaralarını OCR ile, bazı fotoğrafları da yüz eşleştirme ile bulur. Her iki yöntem de hata yapabilir; sonuçlar garanti değildir.
+Fotoğraflar otomatik bulunur. Listede size ait olmayan kareler olabilir; bazı fotoğraflarınız da çıkmayabilir.
 
 ## Geliştirici
 
