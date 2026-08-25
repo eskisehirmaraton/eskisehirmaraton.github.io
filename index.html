@@ -10,10 +10,10 @@
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
     body { margin:0; font-family: Inter, Segoe UI, sans-serif; background:var(--bg); color:#1a1a1a; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; overflow-x:hidden; max-width:100%; }
-    header { position:relative; background:linear-gradient(135deg,var(--navy),#2a5298); color:#fff; padding:12px 72px 10px; text-align:center; }
-    header h1 { margin:0 auto; max-width:40rem; font-size:clamp(1.05rem, 4.6vw, 1.55rem); font-weight:700; line-height:1.28; overflow-wrap:anywhere; letter-spacing:-0.02em; }
+    header { background:linear-gradient(135deg,var(--navy),#2a5298); color:#fff; padding:8px 16px 12px; text-align:center; display:flex; flex-direction:column; align-items:center; }
+    header h1 { margin:0; width:100%; max-width:40rem; font-size:clamp(1.05rem, 4.6vw, 1.55rem); font-weight:700; line-height:1.28; overflow-wrap:anywhere; letter-spacing:-0.02em; }
     header .date { margin:4px 0 0; font-size:12px; font-weight:500; opacity:.78; letter-spacing:.02em; }
-    .lang { position:absolute; top:6px; right:6px; display:inline-flex; align-items:center; justify-content:center; gap:2px; margin:0; padding:2px; border-radius:999px; background:rgba(255,255,255,.12); }
+    .lang { position:static; align-self:flex-end; display:inline-flex; align-items:center; justify-content:center; gap:2px; margin:0 0 8px; padding:2px; border-radius:999px; background:rgba(255,255,255,.12); }
     .lang button { background:transparent; color:#fff; border:0; border-radius:999px; min-width:44px; min-height:36px; padding:6px 10px; font-size:13px; font-weight:700; letter-spacing:.04em; cursor:pointer; opacity:.72; -webkit-tap-highlight-color:transparent; }
     .lang button.active { opacity:1; background:rgba(255,255,255,.22); }
     .bar { max-width:1100px; margin:8px auto 0; padding:0 16px; width:100%; }
@@ -47,14 +47,14 @@
     footer a { color:var(--navy); font-weight:700; text-decoration:none; }
     footer a:hover { text-decoration:underline; }
     @media (max-width:480px) {
-      header { padding:12px 16px 10px; padding-right:72px; }
+      header { padding:8px 12px 10px; }
       .search-row { flex-wrap:wrap; gap:6px; }
       .search label { flex:0 0 auto; }
       input[type=text] { flex:1 1 8rem; }
       .btn-go { flex:1 1 100%; width:100%; }
     }
     @media (min-width:640px) {
-      header { padding:16px 88px 12px; }
+      header { padding:10px 24px 14px; }
       header h1 { font-size:1.55rem; }
       input[type=text] { font-size:17px; }
       .grid { grid-template-columns:repeat(3, minmax(0, 1fr)); gap:14px; }
@@ -69,12 +69,12 @@
 </head>
 <body>
   <header>
-    <h1 id="h1">2026 Eti Lifalif Uluslararası Eskişehir Yarı Maratonu Fotoğraf Bulucu</h1>
-    <p class="date" id="date">16 Ağustos 2026</p>
     <div class="lang" id="lang" role="group" aria-label="Dil">
       <button type="button" id="lang-tr" data-lang="tr" aria-pressed="true">TR</button>
       <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
     </div>
+    <h1 id="h1">2026 Eti Lifalif Uluslararası Eskişehir Yarı Maratonu Fotoğraf Bulucu</h1>
+    <p class="date" id="date">16 Ağustos 2026</p>
   </header>
   <div class="bar">
     <div class="search">
