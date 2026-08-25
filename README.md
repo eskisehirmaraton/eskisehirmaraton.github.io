@@ -2,7 +2,9 @@
 
 Göğüs numaranızı yazarak [Eti Lifalif Uluslararası Eskişehir Yarı Maratonu](https://www.eskisehiryarimaratonu.com/) resmi galerisindeki fotoğrafları bulun.
 
-Canlı sayfa: fotoğraflar resmi siteden yüklenir (`https://www.eskisehiryarimaratonu.com/maraton2/{n}.jpg`).
+Canlı sayfa: https://eskisehirmaraton.github.io/
+
+Fotoğraflar resmi siteden yüklenir (`https://www.eskisehiryarimaratonu.com/maraton2/{n}.jpg`).
 
 ## Kullanım
 
