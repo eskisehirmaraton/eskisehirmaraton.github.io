@@ -1,6 +1,6 @@
-# Eti Lifalif Eskişehir Yarı Maratonu Fotoğraf Bulucu
+# 2026 Eti Lifalif Eskişehir Yarı Maratonu Fotoğraf Bulucu
 
-Göğüs numaranızı yazarak [Eti Lifalif Uluslararası Eskişehir Yarı Maratonu](https://www.eskisehiryarimaratonu.com/) resmi galerisindeki fotoğrafları bulun.
+16 Ağustos 2026 tarihinde düzenlenen [2026 Eti Lifalif Uluslararası Eskişehir Yarı Maratonu](https://www.eskisehiryarimaratonu.com/) resmi galerisindeki fotoğrafları göğüs numaranızla bulun.
 
 Canlı sayfa: https://eskisehirmaraton.github.io/
 
